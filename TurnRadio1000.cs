@@ -3,20 +3,22 @@ using System.Collections.Generic;
 
 namespace ClassyElectronics
 {
-    public class Radionator4001 : Speakanator3001
+    public class TurnRadio1000 : ITurnTable, IRadio
     {
+        public double CurrentSpeed { get; set; }
+        public bool IsPlaying { get; set; }
         public double CurrentFrequency { get; set; }
         public List<double> FavoriteStations { get; set; }
         public bool IsRadioOn { get; set; }
 
-        public Radionator4001()
-        {
-            FavoriteStations = new List<double>();
-        }
-
         public void AddFavorite(double station)
         {
             FavoriteStations.Add(station);
+        }
+
+        public void Play()
+        {
+            IsPlaying = true;
         }
 
         public void RemoveFavorite(double station)
@@ -24,14 +26,19 @@ namespace ClassyElectronics
             FavoriteStations.Remove(station);
         }
 
+        public void Stop()
+        {
+            IsPlaying = false;
+        }
+
+        public void TurnRadioOff()
+        {
+            IsRadioOn = false;
+        }
+
         public void TurnRadioOn()
         {
             IsRadioOn = true;
-        }
-
-        public void TurnRadioOFf()
-        {
-            IsRadioOn = false;
         }
     }
 }
